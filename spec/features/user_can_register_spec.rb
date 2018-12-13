@@ -13,7 +13,7 @@ describe "as a user" do
       user = User.all.last
 
       expect(current_path).to eq(user_path(user))
-      expect(User.all.last).to eq(user)
+      expect(User.all.last.full_name).to eq("Bradley Niedt")
     end
   end
 end
