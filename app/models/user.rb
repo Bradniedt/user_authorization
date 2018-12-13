@@ -4,7 +4,7 @@ class User < ApplicationRecord
 
   def self.authenticate(email, password)
     user = User.find_by(email_address: email)
-    if user.email_address == email && user.password == password
+    if user && user.email_address == email && user.password == password
       user
     else
       nil

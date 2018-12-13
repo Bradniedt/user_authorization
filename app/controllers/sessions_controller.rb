@@ -4,11 +4,12 @@ class SessionsController < ApplicationController
 
   def create
     user = User.find_by(email_address: params[:email])
-    if user && User.authenticate(params[:email], params[:password])
-      session[:user_id] = user.id
+    verified = User.authenticate(params[:email], params[:password])
+    if user && verified
+      session[:user_id] = verified.id
       redirect_to user_path(user)
     else
-      flash[:danger] = "Credentials not valid - try again"
+      flash[:notice] = "Credentials not valid - try again"
       render 'new'
     end
   end
